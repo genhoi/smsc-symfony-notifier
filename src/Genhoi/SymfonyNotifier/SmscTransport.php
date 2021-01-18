@@ -69,9 +69,9 @@ final class SmscTransport extends AbstractTransport
         }
         if (200 !== $statusCode) {
             $errorMessage = sprintf(
-                'Unable to send the SMS. responseCode: "%s", responseBody: "%s"',
-                $response->getContent(false),
-                $statusCode
+                'Unable to send the SMS. responseCode: "%s", responseContent: "%s"',
+                $statusCode,
+                $response->getContent(false)
             );
             throw new TransportException($errorMessage, $response);
         }
