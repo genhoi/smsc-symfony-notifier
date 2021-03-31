@@ -78,6 +78,10 @@ final class SmscTransport extends AbstractTransport
 
         $responseBody = $response->toArray(false);
         $error = $responseBody['error'] ?? null;
+        $errorCode = $responseBody['error_code'] ?? null;
+        if ($errorCode === 6) {
+            throw new MessageDeniedException($error, $response);
+        }
         if (null !== $error) {
             throw new TransportException(sprintf('Unable to send the SMS: "%s".', $error), $response);
         }
