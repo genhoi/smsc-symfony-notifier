@@ -59,7 +59,6 @@ final class SmscTransport extends AbstractTransport
 
         $response = $this->client->request('POST', $endpoint, [
             'body' => $body,
-            'max_duration' => 3,
         ]);
 
         try {
